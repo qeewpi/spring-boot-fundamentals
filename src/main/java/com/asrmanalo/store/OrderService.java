@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private PaymentService paymentService;
 
-    @PostConstruct
-    public void init() {
-        System.out.println("OrderService PostConstruct");
-    }
-
-    @PreDestroy
-    public void cleanUp() {
-        System.out.println("OrderService PreDestroy");
-    }
+//    @PostConstruct
+//    public void init() {
+//        System.out.println("OrderService PostConstruct");
+//    }
+//
+//    @PreDestroy
+//    public void cleanUp() {
+//        System.out.println("OrderService PreDestroy");
+//    }
 
     public OrderService(PaymentService paymentService) {
         System.out.println("OrderService Created");
