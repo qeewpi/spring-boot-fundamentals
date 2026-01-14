@@ -9,8 +9,10 @@ public class StoreApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-        var OrderService = context.getBean(OrderService.class);
-        OrderService.placeOrder();
+//        var OrderService = context.getBean(OrderService.class);
+//        OrderService.placeOrder();
+        var NotificationManager = context.getBean(NotificationManager.class);
+        NotificationManager.sendNotification("Hello, this is a test message!");
     }
 
 }
