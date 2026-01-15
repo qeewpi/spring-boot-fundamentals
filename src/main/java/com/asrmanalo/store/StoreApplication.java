@@ -1,5 +1,6 @@
 package com.asrmanalo.store;
 
+import com.asrmanalo.store.entities.Address;
 import com.asrmanalo.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +18,18 @@ public class StoreApplication {
                     .password("password")
                     .email("email")
                     .build();
+
+        var address = Address.builder()
+                    .id(1L)
+                    .zip("12345")
+                    .state("state")
+                    .city("city")
+                    .street("street")
+                    .build();
+
+        user.addAddress(address);
+        System.out.println(user);
+        System.out.println(address);
     }
 
 }
