@@ -19,17 +19,11 @@ public class StoreApplication {
                     .email("email")
                     .build();
 
-        var address = Address.builder()
-                    .id(1L)
-                    .zip("12345")
-                    .state("state")
-                    .city("city")
-                    .street("street")
-                    .build();
-
-        user.addAddress(address);
+        user.addTag("tag");
         System.out.println(user);
-        System.out.println(address);
+
+        user.removeTag("tag");
+        System.out.println(user);
     }
 
 }

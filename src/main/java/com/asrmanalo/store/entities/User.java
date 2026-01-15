@@ -3,8 +3,7 @@ package com.asrmanalo.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Setter
 @Getter
@@ -33,6 +32,15 @@ public class User {
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_tags",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+    private Set<Tag> tags = new HashSet<>();
+
     public void addAddress(Address address) {
         this.addresses.add(address);
         address.setUser(this);
@@ -42,4 +50,25 @@ public class User {
         this.addresses.remove(address);
         address.setUser(null);
     }
+
+    public void addTag(String tagName) {
+        var tag = new Tag(tagName);
+        this.tags.add(tag);
+        tag.getUsers().add(this);
+    }
+
+    public void removeTag(String tagName) {
+        Iterator<Tag> iterator = this.tags.iterator();
+
+        while (iterator.hasNext()) {
+            Tag tag = iterator.next();
+
+            if (tag.getName().equals(tagName)) {
+                iterator.remove();
+
+                tag.getUsers().remove(this);
+            }
+        }
+    }
 }
+
