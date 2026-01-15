@@ -41,6 +41,14 @@ public class User {
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
 
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+        profile.setUser(this);
+    }
+
     public void addAddress(Address address) {
         this.addresses.add(address);
         address.setUser(this);

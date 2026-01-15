@@ -1,6 +1,7 @@
 package com.asrmanalo.store;
 
 import com.asrmanalo.store.entities.Address;
+import com.asrmanalo.store.entities.Profile;
 import com.asrmanalo.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +20,13 @@ public class StoreApplication {
                     .email("email")
                     .build();
 
-        user.addTag("tag");
-        System.out.println(user);
+        var profile = Profile.builder()
+                .bio("bio").build();
 
-        user.removeTag("tag");
+        user.setProfile(profile);
+
         System.out.println(user);
+        System.out.println("Profile belongs to: " + profile.getUser().getName());
     }
 
 }
